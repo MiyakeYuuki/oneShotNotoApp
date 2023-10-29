@@ -28,16 +28,16 @@
 * remove：削除（ファイル）
 
 ### Prefixのアイコン
-* tada：:tada: 初めてのコミット（Initial Commit）
-* sparkles：:sparkles: 新機能追加（Add）
-* bug：:bug: バグ修正（Fix）
-* hammer：:hammer: 機能修正(Update)
-* wastebasket：:wastebasket: スクリプト削除（Remove）
-* construction：:construction: 作業途中、WIP(Work In Progress)
-* recycle：:recycle: リファクタリング、コード整理(Refactoring)
-* art：:art: デザインUI/UX変更(Accessibility)
-* horse：:horse: パフォーマンス向上に関する修正(Performance)
-* rotating_light：:rotating_light: テストコード追加(Tests)
+* tada：            :tada: 初めてのコミット（Initial Commit）
+* sparkles：        :sparkles: 新機能追加（Add）
+* bug：             :bug: バグ修正（Fix）
+* hammer：          :hammer: 機能修正(Update)
+* wastebasket：     :wastebasket: スクリプト削除（Remove）
+* construction：    :construction: 作業途中、WIP(Work In Progress)
+* recycle：         :recycle: リファクタリング、コード整理(Refactoring)
+* art：             :art: デザインUI/UX変更(Accessibility)
+* horse：           :horse: パフォーマンス向上に関する修正(Performance)
+* rotating_light：  :rotating_light: テストコード追加(Tests)
 
 
 ## 補足
