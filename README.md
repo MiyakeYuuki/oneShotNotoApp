@@ -17,7 +17,7 @@
 ※1行目は課題Noがある場合のみ、refs #[課題No]を記載する．
 
 ### 例
-[fix]refs #110 削除フラグが更新されない不具合の修正
+:bug: refs #110 削除フラグが更新されない不具合の修正
 
 [detail] 更新SQLの対象カラムに削除フラグが含まれていなかったため追加しました。
 
@@ -26,6 +26,19 @@
 * add：新規（ファイル）機能追加
 * update：機能修正（バグではない）
 * remove：削除（ファイル）
+
+### Prefixのアイコン
+* 🎉  :tada: 初めてのコミット（Initial Commit）
+* ✨  :sparkles: 新機能追加（Add）
+* 🐛  :bug: バグ修正（Fix）
+* 🔨  :hammer: 機能修正(Update)
+* 🗑️  :wastebasket: スクリプト削除（Remove）
+* 🚧  :construction: 作業途中、WIP(Work In Progress)
+* ♻️   :recycle: リファクタリング、コード整理(Refactoring)
+* 🎨  :art: デザインUI/UX変更(Accessibility)
+* 🐎  :horse: パフォーマンス向上に関する修正(Performance)
+* 🚨  :rotating_light: テストコード追加(Tests)
+
 
 ## 補足
 * タスク管理は「SaqQutto」で行います．
