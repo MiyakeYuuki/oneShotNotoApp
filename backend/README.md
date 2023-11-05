@@ -10,8 +10,8 @@
 ※その他のライブラリはPipfile参照
 
 wsl2で環境構築を行う場合は，
-以下の記事を参考にしてください．
-環境構築：<https://qiita.com/My-Tech/private/4c90a04eb8684d9da4b9>
+以下の記事を参考にしてください．\
+環境構築：<https://qiita.com/My-Tech/private/4c90a04eb8684d9da4b9>\
 pipenvの使い方：<https://qiita.com/y-tsutsu/items/54c10e0b2c6b565c887a>
 
 ### 実行コマンド(Pipfileが無い場合)
