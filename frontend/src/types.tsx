@@ -3,8 +3,8 @@ import {
 } from "firebase/firestore";
 
 /**
-     * spotsデータ型
-     */
+ * spotsデータ型
+ */
 export interface Results {
     id: string,
     name: string;
@@ -15,4 +15,14 @@ export interface Results {
     area: string;
     category: string;
     keyword: string;
+}
+
+
+/**
+ * axiosデータ型
+ */
+export interface ChatResponse {
+    data: string,
+    status: number,
+    statusText: string,
 }

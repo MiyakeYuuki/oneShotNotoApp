@@ -1,45 +1,4 @@
 import { useEffect } from 'react';
-//import { getKeywords } from '../api/GetFireStoreData';
-
-/**
- * チャット内容を保管し，フォームを消す
- * @param answer 回答
- * @param message 質問
- * @param conversation チャット内容
- * @param setMessage
- * @param setConversation 
- */
-export const useChatEffect = (
-    answer: string,
-    message: string,
-    conversation: { role: string; content: string; }[],
-    setConversation: React.Dispatch<React.SetStateAction<{ role: string; content: string; }[]>>,
-    setMessage: React.Dispatch<React.SetStateAction<string>>,
-) => {
-    useEffect(() => {
-        const newConversation = [
-            {
-                role: 'assistant',
-                content: answer,
-            },
-            {
-                role: 'user',
-                content: message,
-            },
-        ];
-        setConversation([...conversation, ...newConversation]);
-        setMessage('');
-    }, [answer]);
-};
-
-// export const useGetKeywordsEffect = (
-//     keywords: string,
-//     setKeywords: React.Dispatch<React.SetStateAction<string>>,
-// ) => {
-//     useEffect(() => {
-//         const keywordData: String[] = await getKeywords() as String[];
-//     }, []);
-// };
 
 /**
  * 読込アニメーションの表示

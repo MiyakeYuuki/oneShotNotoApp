@@ -1,47 +1,39 @@
 import axios from 'axios';
 import { getKeywords } from './GetFireStoreData';
 import { systemStartContents, systemEndContents } from "./contents";
+import { ChatResponse } from "../types";
 
-const API_URL = process.env.REACT_APP_GPTURL;
-const MODEL = process.env.REACT_APP_GPTMODEL;
-const API_KEY = process.env.REACT_APP_GPTAPIKEY;
 /**
  * 質問内容からキーワードを抽出
  * @param message 質問
- * @param conversation 前回の会話
  * @returns keywordArray キーワード配列
  */
-const getGptResponse = async (message: String, conversation: { role: String; content: String; }[]) => {
+const getGptResponse = async (message: String) => {
+    const url = process.env.REACT_APP_BACKEND_SERVER_URL as string;
     try {
         // firestoreからkeywordsを取得
         const keywordData: String[] = await getKeywords() as String[];
+
+        // systemコンテンツの作成
         const systemContents = systemStartContents + keywordData.join(',') + systemEndContents
         console.log(systemContents);
-        // axios.post(URL,request)をawaitする
-        const response = await axios.post(API_URL as string,
-            {
-                // モデル ID の指定
-                model: MODEL,
-                max_tokens: 256,
-                temperature: 0.2,
-                // 質問内容
-                messages:
-                    [//...conversation,
-                        { 'role': 'user', 'content': message + "Please output three or fewer categories in English." },
-                        { 'role': 'system', 'content': systemContents }
-                    ],
-            },
-            {
-                // 送信する HTTP ヘッダー(認証情報)
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_KEY}`
-                }
-            });
+
+        // GPTに送信するメッセージ作成
+        const messages = [
+            { 'role': 'system', 'content': systemContents },
+            { 'role': 'user', 'content': message + "Please output three or fewer categories in English." },
+        ];
+
+        // バックエンドサーバーにリクエスト送信
+        const response: ChatResponse = await axios.post(
+            url,
+            { content: JSON.stringify(messages) }
+        );
+
         // 回答の取得
         // 回答例1:\n"Scenery",\n"Sea",\n"Fashionable",\n"Cafes",\n"Gifts"\n
         // 回答例2:```json\n[\n"Scenery",\n"Sea",\n"Fashionable",\n"Cafes",\n"Gifts"\n]\n```
-        return response.data.choices[0].message.content.trim();
+        return response.data;
 
     } catch (error) {
         console.error(error);

@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, useRef } from 'react';
 import getGptResponse from '../api/ChatApi';
-import { useChatEffect, useLoadingEffect, parseGptResponse } from './ChatUtil';
+import { useLoadingEffect, parseGptResponse } from './ChatUtil';
 import { getSpots } from '../api/GetFireStoreData';
 import ChatMemo from './ChatMemo';
 import { Results } from "../types";
@@ -9,22 +9,17 @@ import {
     Grid,
     CardActions,
 } from "@mui/material";
-import { MyButton, MyCard, MyDivContainer, MyCardHeader, pStyle } from './../styles/Styles';
+import { MyButton, MyCard, MyDivContainer, MyCardHeader } from './../styles/Styles';
 
 const App: React.FC = () => {
 
     const [message, setMessage] = useState<string>('');
     const [answer, setAnswer] = useState<string>('');
-    const [conversation, setConversation] = useState<{ role: string; content: string; }[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const prevMessageRef = useRef<string>('');
     const [spots, setSpots] = useState<Results[]>([]);
     const maxMessageLength: number = 50;
-    //const [keywords, setKeywords] = useState<string>('');
-    const keywords: String = "Aquarium,Boyfriend,Cafes,Date,Enjoyment,Family,Fashionable,Gifts,Instagrammable,Interaction,Kids,Leisure,Onsen,Scenery,Sea";
 
-    useChatEffect(answer, message, conversation, setConversation, setMessage);
-    //useGetKeywordsEffect();
     useLoadingEffect(loading, setLoading);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -42,12 +37,13 @@ const App: React.FC = () => {
         setLoading(true);
 
         // ChatGPTにアクセス
-        const responseText = await getGptResponse(message, conversation);
+        const responseText: string = await getGptResponse(message) as string;
         console.log(responseText);
 
         try {
             // ChatGPTの回答を配列にパージ
             const keywordArray: string[] = parseGptResponse(responseText) as string[];
+
             // keyword配列から観光地を取得
             const spotsArray: Results[] | undefined = await getSpots(keywordArray);
             setSpots(spotsArray as Results[]);
@@ -113,8 +109,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-
-
-
-
