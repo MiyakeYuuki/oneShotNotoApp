@@ -1,23 +1,9 @@
 import React, { useState } from "react";
 import { Results } from "../types";
 import {
-  Button,
-  Typography,
-  CardContent,
-  Card,
-  Grid,
-  AppBar,
-  Tabs,
-  Tab,
+  Button, Typography, CardContent, Card, Grid, AppBar, Tabs, Tab,
 } from "@mui/material";
-import {
-  MyCard,
-  areaButtonStyle,
-  categoryButtonStyle,
-  keywordButtonStyle,
-  MyCardHeader,
-  MyDivContainer,
-} from "./../styles/Styles";
+import { MyCard, areaButtonStyle, categoryButtonStyle, keywordButtonStyle, MyCardHeader, MyDivContainer, } from "./../styles/Styles";
 import MapLinkButton from "./MapButton";
 import Map from "./Map";
 
@@ -28,36 +14,31 @@ interface ChatProps {
   spots: Results[];
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
+const a11yProps = (index: number) => ({
+  id: `simple-tab-${index}`,
+  "aria-controls": `simple-tabpanel-${index}`,
+});
 
-function TabPanel(props: {
+const TabPanel: React.FC<{
   children?: React.ReactNode;
   index: number;
   value: number;
-}) {
-  const { children, value, index, ...other } = props;
+}> = ({ children, value, index, ...other }) => (
+  <div
+    role="tabpanel"
+    hidden={value !== index}
+    id={`simple-tabpanel-${index}`}
+    aria-labelledby={`simple-tab-${index}`}
+    {...other}
+  >
+    {value === index && (
+      <Typography component="div" p={2}>
+        {children}
+      </Typography>
+    )}
+  </div>
+);
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Typography component="div" p={2}>
-          {children}
-        </Typography>
-      )}
-    </div>
-  );
-}
 
 /**
  * Chat内容のメモ化を行いレンダー処理を軽減する
@@ -145,7 +126,7 @@ const ChatMemo: React.FC<ChatProps> = ({ prevMessage, answer, spots }) => {
                         <Button
                           variant="contained"
                           style={areaButtonStyle}
-                          //onClick={handleButtonClick}
+                        //onClick={handleButtonClick}
                         >
                           {spot.area}
                         </Button>

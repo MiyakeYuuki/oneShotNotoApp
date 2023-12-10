@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Results } from "../types";
-import { Card, CardContent } from "@mui/material";
-import { MyCard, MyCardHeader, MyDivContainer } from "./../styles/Styles";
+import { Card } from "@mui/material";
 import { GoogleMap, LoadScriptNext, MarkerF } from "@react-google-maps/api";
 
 // ChatMemoの引数の型定義

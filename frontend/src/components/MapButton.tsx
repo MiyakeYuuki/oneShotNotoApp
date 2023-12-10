@@ -19,16 +19,8 @@ function isMobileDevice(): boolean {
 
 const MapLinkButton: React.FC<MapLinkButtonProps> = ({ location, label }) => {
   const handleButtonClick = () => {
-    const isMobile = isMobileDevice();
     const encodedName = encodeURIComponent(location.name);
-    const googleMapsBaseUrl = isMobile
-      ? `geo:${location.lat},${location.lng}`
-      : `https://www.google.com/maps/search/?api=1&query=${encodedName}@${location.lat},${location.lng}`;
-
-    const googleMapsUrl = isMobile
-      ? `${googleMapsBaseUrl}?q=${encodedName}`
-      : googleMapsBaseUrl;
-
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${encodedName}`;
     window.open(googleMapsUrl, "_blank");
   };
 
